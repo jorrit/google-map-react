@@ -699,8 +699,14 @@ class GoogleMap extends Component {
               const latLng = this_.geoService_.fromContainerPixelToLatLng(
                 this_.mouse_
               );
-              this_.mouse_.lat = latLng.lat;
-              this_.mouse_.lng = latLng.lng;
+
+              if (latLng && this_.mouse_) {
+                this_.mouse_.lat = latLng.lat;
+                this_.mouse_.lng = latLng.lng;
+              } else {
+                console.error('latLng was', latLng);
+                console.error('this_.mouse_ was', this_.mouse_);
+              }
             }
 
             this_._onChildMouseMove();

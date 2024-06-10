@@ -76,6 +76,13 @@ export default class Geo {
   fromContainerPixelToLatLng(ptXY) {
     if (this.mapCanvasProjection_) {
       const latLng = this.mapCanvasProjection_.fromContainerPixelToLatLng(ptXY);
+      if (!latLng) {
+        console.error(
+          'this.mapCanvasProjection_.fromContainerPixelToLatLng returned',
+          latLng
+        );
+        return null;
+      }
       return { lat: latLng.lat(), lng: latLng.lng() };
     }
 
